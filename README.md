@@ -31,13 +31,15 @@ The demo data models a South African building and hardware supplier (prices in Z
 
 ```mermaid
 flowchart LR
-    UI["React + TypeScript<br/>(Vite)"] -- "JSON over /api<br/>Bearer JWT" --> API
-    subgraph API["Spring Boot 3 (Java 21)"]
+    UI["React + TypeScript (Vite)"]
+    subgraph API["Spring Boot 3 / Java 21"]
         direction TB
-        C[Controllers<br/>validation, @PreAuthorize] --> S[Services<br/>business rules, transactions]
-        S --> R[Spring Data JPA<br/>repositories, specifications]
+        C["Controllers: validation and role checks"] --> S["Services: business rules and transactions"]
+        S --> R["Spring Data JPA repositories"]
     end
-    R --> DB[(PostgreSQL)]
+    DB[("PostgreSQL")]
+    UI -- "JSON over /api with a JWT" --> C
+    R --> DB
 ```
 
 **Backend highlights**
