@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:inventory;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        auto_quote_keyword: true
+
+app:
+  demo:
+    enabled: true

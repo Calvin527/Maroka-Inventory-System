@@ -1,0 +1,46 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: smart-inventory
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/smart_inventory}
+    username: ${DB_USERNAME:inventory}
+    password: ${DB_PASSWORD:inventory}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+app:
+  jwt:
+    # Development key only. Set JWT_SECRET (base64, at least 256 bits) in any real deployment.
+    secret: ${JWT_SECRET:XgWJVTvq4F8a3ST01RjCWJN+X7v/imEq3AA3fjprUvBF9EHH1tR9vZZj/dslyEcc5iftx9oV38+/lhdWe+jbVw==}
+    expiration-ms: ${JWT_EXPIRATION_MS:28800000}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  tax-rate: 0.15
+  timezone: Africa/Johannesburg
+  demo:
+    # Demo mode is for the portfolio demo ONLY, never for a real business. When true:
+    # sample data is loaded into an empty database, the login page lists the demo accounts,
+    # demo accounts are protected, and all data is wiped and reloaded every night.
+    # Always use a separate database (and JWT secret) for the demo.
+    enabled: ${DEMO_MODE:false}
+    # Nightly reset: second minute hour day month weekday (03:00 every day, South African time).
+    reset-cron: ${DEMO_RESET_CRON:0 0 3 * * *}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+
+logging:
+  level:
+    com.smartinventory: INFO
