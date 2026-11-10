@@ -26,7 +26,7 @@ services:
       # Replace with your own: openssl rand -base64 64
       JWT_SECRET: ${JWT_SECRET:-XgWJVTvq4F8a3ST01RjCWJN+X7v/imEq3AA3fjprUvBF9EHH1tR9vZZj/dslyEcc5iftx9oV38+/lhdWe+jbVw==}
       CORS_ALLOWED_ORIGINS: http://localhost:3000
-      SEED_DEMO_DATA: "true"
+      DEMO_MODE: "true"
     ports:
       - "8080:8080"
     depends_on:
